@@ -1,3 +1,16 @@
+function addListenersForButtonsGallery(galleryButtons) {
+    galleryButtons.forEach( (btn) => {
+        btn.addEventListener('click', (event) => {
+            let innerHtml = btn.innerHTML;
+            btn.innerHTML = "<i>Ссылка скопирована</i>";
+            setTimeout( () => {
+                btn.innerHTML = innerHtml;
+            }, 2000);
+            copyToClipboard(btn.dataset.copy);
+        })
+    })
+}
+
 function copyToClipboard(textToCopy) {
     // navigator clipboard api needs a secure context (https)
     if (navigator.clipboard && window.isSecureContext) {
@@ -20,19 +33,6 @@ function copyToClipboard(textToCopy) {
             textArea.remove();
         });
     }
-}
-
-function addListenersForButtonsGallery(galleryButtons) {
-    galleryButtons.forEach( (btn) => {
-        btn.addEventListener('click', (event) => {
-            let innerHtml = btn.innerHTML;
-            btn.innerHTML = "Ссылка скопирована";
-            setTimeout( () => {
-                btn.innerHTML = innerHtml;
-            }, 2000);
-            copyToClipboard(btn.dataset.copy);
-        })
-    })
 }
 
 export default addListenersForButtonsGallery;
