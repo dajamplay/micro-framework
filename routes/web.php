@@ -40,3 +40,6 @@ $router->addRoute(['POST', 'GET'], '/admin/product/delete/{id:\d+}', [\App\Actio
 
 /** Administrator - Excel */
 $router->addRoute(['POST', 'GET'], '/admin/excel/home', [\App\Actions\Admin\Excel\HomeExcel::class]);
+
+/** Administrator - Gallery */
+$router->addRoute(['POST', 'GET'], '/admin/gallery/home', [\App\Actions\Admin\Gallery\HomeGallery::class]);

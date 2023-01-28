@@ -4,10 +4,10 @@ namespace App\Services\FileUploader;
 
 class FileUploader
 {
-    public function upload($uploadedFiles, string  $fileName) : string | null {
+    public function upload($uploadedFiles, string  $fileName, $path = null) : string | null {
         $uploadedImage = $uploadedFiles[$fileName];
         if ($uploadedImage->getError() == UPLOAD_ERR_OK) {
-            return $this->moveUploadedFile(config('path.uploads'), $uploadedImage);
+            return $this->moveUploadedFile($path ?? config('path.uploads'), $uploadedImage);
         }
         return null;
     }

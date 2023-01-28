@@ -42,6 +42,9 @@
 {{--                    <a href="/admin/product/create" type="button" class="btn btn-success">Создать продукт</a>--}}
 {{--                </div>--}}
                 <div class="admin__header__menuitem">
+                    <a href="/admin/gallery/home" type="button" class="btn btn-success">Галерея</a>
+                </div>
+                <div class="admin__header__menuitem">
                     <form method="POST" action="/admin/out">
                         <button type="submit" class="btn btn-warning">Выход</button>
                     </form>
@@ -67,22 +70,6 @@
 
 </div>
 <script type="text/javascript" src="/assets/js/tinymce/tinymce.min.js"></script>
-<script type="text/javascript">
-    tinymce.init({
-        selector: 'textarea',
-        language: 'ru',
-        menubar: false,
-        plugins: 'lists',
-        toolbar: [
-            { name: 'history', items: [ 'undo', 'redo' ] },
-            { name: 'formatting', items: [ 'forecolor', 'bold', 'italic' , 'underline'] },
-            { name: 'alignment', items: [ 'alignleft', 'aligncenter', 'alignright', 'alignjustify' ] },
-            { name: 'indentation', items: [ 'outdent', 'indent' ] },
-            { name: 'lists', items: [ 'numlist' , 'bullist' ] }
-
-        ],
-        branding: false
-    });
-</script>
+<script src="/assets/js/admin.js"></script>
 </body>
 </html>
