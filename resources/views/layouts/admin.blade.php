@@ -69,7 +69,7 @@
     </div>
 
 </div>
-<script type="text/javascript" src="/assets/js/tinymce/tinymce.min.js"></script>
-<script src="/assets/js/admin.js"></script>
+<script type="text/javascript" src="/assets/vendor/tinymce/tinymce.min.js"></script>
+<script type="module" src="/assets/js/admin/admin.js"></script>
 </body>
 </html>

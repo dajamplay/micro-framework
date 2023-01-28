@@ -1,19 +1,3 @@
-tinymce.init({
-    selector: 'textarea',
-    language: 'ru',
-    menubar: false,
-    plugins: 'lists',
-    toolbar: [
-        { name: 'history', items: [ 'undo', 'redo' ] },
-        { name: 'formatting', items: [ 'forecolor', 'bold', 'italic' , 'underline'] },
-        { name: 'alignment', items: [ 'alignleft', 'aligncenter', 'alignright', 'alignjustify' ] },
-        { name: 'indentation', items: [ 'outdent', 'indent' ] },
-        { name: 'lists', items: [ 'numlist' , 'bullist' ] }
-
-    ],
-    branding: false
-});
-
 function copyToClipboard(textToCopy) {
     // navigator clipboard api needs a secure context (https)
     if (navigator.clipboard && window.isSecureContext) {
@@ -37,3 +21,5 @@ function copyToClipboard(textToCopy) {
         });
     }
 }
+
+export default copyToClipboard;
