@@ -22,4 +22,17 @@ function copyToClipboard(textToCopy) {
     }
 }
 
-export default copyToClipboard;
+function addListenersForButtonsGallery(galleryButtons) {
+    galleryButtons.forEach( (btn) => {
+        btn.addEventListener('click', (event) => {
+            let innerHtml = btn.innerHTML;
+            btn.innerHTML = "Ссылка скопирована";
+            setTimeout( () => {
+                btn.innerHTML = innerHtml;
+            }, 2000);
+            copyToClipboard(btn.dataset.copy);
+        })
+    })
+}
+
+export default addListenersForButtonsGallery;

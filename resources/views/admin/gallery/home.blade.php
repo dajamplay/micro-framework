@@ -23,7 +23,7 @@
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">{{$image->name}}</h5>
                         <p class="card-text small">{{$url . $image->name}}</p>
-                        <button class="btn btn-outline-success btn-block mt-auto" onclick="copyToClipboard('{{$url . $image->name}}')">Скопировать ссылку</button>
+                        <a class="btn btn-outline-success btn-block mt-auto btn-copy" data-copy="{{$url . $image->name}}">Скопировать ссылку</a>
                     </div>
                 </div>
             </div>
