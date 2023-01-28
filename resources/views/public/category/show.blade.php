@@ -19,7 +19,7 @@
                         <h1>Профессиональная косметика - {{ $category->name }}</h1>
                         @if($category->image)
                             <div class="card__img">
-                                <img src="/uploads/{{$category->image}}" alt="">
+                                <img src="/uploads/{{$category->image}}" alt="{{ $category->name }}">
                             </div>
                         @endif
                         <p>{!! htmlspecialchars_decode($category->description) !!}</p>

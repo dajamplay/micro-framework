@@ -30,17 +30,17 @@
                     <a href="/admin/category/home" type="button" class="btn btn-success">Категории</a>
                 </div>
                 <div class="admin__header__menuitem">
-                    <a href="/admin/product/home" type="button" class="btn btn-success">Продукция</a>
+                    <a href="/admin/category/create" type="button" class="btn btn-success">Создать категорию</a>
                 </div>
+{{--                <div class="admin__header__menuitem">--}}
+{{--                    <a href="/admin/product/home" type="button" class="btn btn-success">Продукция</a>--}}
+{{--                </div>--}}
                 <div class="admin__header__menuitem">
                     <a href="/admin/excel/home" type="button" class="btn btn-success">Загрузить из Excel файла</a>
                 </div>
-                <div class="admin__header__menuitem">
-                    <a href="/admin/category/create" type="button" class="btn btn-success">Создать категорию</a>
-                </div>
-                <div class="admin__header__menuitem">
-                    <a href="/admin/product/create" type="button" class="btn btn-success">Создать продукт</a>
-                </div>
+{{--                <div class="admin__header__menuitem">--}}
+{{--                    <a href="/admin/product/create" type="button" class="btn btn-success">Создать продукт</a>--}}
+{{--                </div>--}}
                 <div class="admin__header__menuitem">
                     <form method="POST" action="/admin/out">
                         <button type="submit" class="btn btn-warning">Выход</button>

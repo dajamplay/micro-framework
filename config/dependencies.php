@@ -14,6 +14,5 @@ use function DI\factory;
 return [
     RouterInterface::class => autowire(Router::class),
     TemplateInterface::class => autowire(Blade::class),
-    UserRepository::class => autowire(EloquentUserRepository::class),
     ActionHandler::class => factory( fn (Container $c) => new ActionHandler($c)),
 ];

@@ -10,7 +10,9 @@ class HomeCategory extends Action
 {
     public function __invoke(): ResponseInterface
     {
-        $categories = Category::all();
+        $categories = Category::all()->where('parent_id', '=', '0');
+        //$categories = Category::all();
+
         return $this->render('admin.category.home', ['categories' => $categories]);
     }
 }

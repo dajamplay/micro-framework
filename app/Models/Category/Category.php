@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    public $timestamps = false;
+
     protected $table = 'category';
     protected $fillable = ['id', 'name', 'parent_id', 'description', 'image'];
 
@@ -14,4 +14,6 @@ class Category extends Model
     {
         return $this->hasOne(Category::class, 'id','parent_id');
     }
+
+
 }
