@@ -35,7 +35,7 @@ class HomeGallery extends Action
 
         return $this->render('admin.gallery.home', [
             'images' => $images,
-            'url' => 'http://dev.loc/gallery/'
+            'url' => config('site.gallery_url')
         ]);
     }
 }

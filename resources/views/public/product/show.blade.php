@@ -19,19 +19,31 @@
                         @if (\App\Support\Session\Session::hasFlash('flash_message'))
                             <br>
                             <div class="alert alert-success">{{ \App\Support\Session\Session::getFlash('flash_message') }}</div>
+                            <br>
                         @endif
-                        <br>
-                        <table class="table table_single_product">
+
+
+                        <table class="table">
                             <thead>
-                                <tr>
-                                    <th>Производитель</th>
-                                    <th><h1>{{ $category->parent->name }}</h1></th>
-                                </tr>
+                            <tr>
+                                <th style="border-top-left-radius: 30px;" colspan="2"><h1>{{ $category->parent->name }}: {{ $product->name }}</h1></th>
+                            </tr>
                             </thead>
                             <tbody>
+
                                 <tr>
-                                    <td>Наименование</td>
-                                    <td><b>{{ $product->name }}</b></td>
+                                    <td colspan="1">
+                                        @if($product->image)
+                                            <div class="product_img">
+                                                <img src="{{$product->image}}" alt="{{$product->name}}">
+                                            </div>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($product->description)
+                                            <div><b>{!! htmlspecialchars_decode($product->description) !!}</b></div>
+                                        @endif
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Линия</td>
@@ -41,12 +53,6 @@
                                     <td>Объем(мл)</td>
                                     <td><b>{{ $product->size }}</b></td>
                                 </tr>
-                                @if($product->description)
-                                    <tr>
-                                        <td>Описание</td>
-                                        <td><b>{!! htmlspecialchars_decode($product->description) !!}</b></td>
-                                    </tr>
-                                @endif
                                 <tr>
                                     <td>Стоимость</td>
                                     @if($product->price && config('site.price'))
@@ -65,39 +71,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <br>
-                        <hr>
-                            @if($product->image)
-                                <div class="product_img">
-                                    <img src="{{$product->image}}" alt="">
-                                </div>
-                                <hr>
-                            @endif
-                        <h3>Оставьте заявку и менеджеры нашей компании свяжутся с вами</h3>
-                        <div style="margin-left: 15px;">
-                            <form method="post" enctype="multipart/form-data">
-                                <input type="text" name="productName" value="{{$product->name}}" hidden>
-                                <table>
-                                    <tr>
-                                        <td><label>Телефон</label></td>
-                                        <td><input type="text" class="form-control" name="tel" required></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Электронная почта</label></td>
-                                        <td><input type="email" class="form-control" name="email" required></td>
-                                    </tr>
-                                    <tr>
-                                        <td><label>Комментарий к заказу</label></td>
-                                        <td><textarea rows="10" cols="45" type="text" class="form-control" name="text"></textarea></td>
-                                    </tr>
-                                </table>
-                                <div style="text-align: center"><button type="submit" class="hero__btn" disabled>Оставить заявку</button></div>
-                            </form>
-                        </div>
-
-                        <br>
                     </div>
-
                 </section>
             </div>
         </div>
