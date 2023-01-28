@@ -7,7 +7,7 @@ class FileUploader
     public function upload($uploadedFiles, string  $fileName) : string | null {
         $uploadedImage = $uploadedFiles[$fileName];
         if ($uploadedImage->getError() == UPLOAD_ERR_OK) {
-            return $this->moveUploadedFile(config('site.uploads'), $uploadedImage);
+            return $this->moveUploadedFile(config('path.uploads'), $uploadedImage);
         }
         return null;
     }
