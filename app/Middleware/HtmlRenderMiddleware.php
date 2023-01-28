@@ -5,8 +5,10 @@ namespace App\Middleware;
 
 use App\Support\ResponseDTO\ResponseDTO;
 use App\Support\TemplateEngine\TemplateInterface;
+use Illuminate\Support\Facades\Redirect;
 use Laminas\Diactoros\Response\EmptyResponse;
 use Laminas\Diactoros\Response\HtmlResponse;
+use Laminas\Diactoros\Response\RedirectResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -33,6 +35,8 @@ class HtmlRenderMiddleware implements MiddlewareInterface
             case 200:
                 $body = $this->templateEngine->render($responseDTO->template, $responseDTO->data);
                 return new HtmlResponse($body, $responseDTO->status, $responseDTO->headers);
+            case 302:
+                return new RedirectResponse($responseDTO->headers['Location']);
             default:
                 return new EmptyResponse($responseDTO->status, $responseDTO->headers);
         }

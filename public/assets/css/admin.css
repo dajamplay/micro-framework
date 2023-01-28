@@ -1,0 +1,33 @@
+/*
+******************************* Header ******************************
+*/
+
+.admin__header__wrap {
+    display: flex;
+    align-items: center;
+}
+
+.admin__header__menu {
+    display: flex;
+    align-items: center;
+}
+
+.admin__header__menuitem {
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+.admin__header__name {
+    font-weight: 500;
+    font-size: 28px;
+    margin-left: 5px;
+    color: #005d3e;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.nicEdit-main {
+    padding: 5px;
+}

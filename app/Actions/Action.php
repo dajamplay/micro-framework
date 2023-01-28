@@ -31,4 +31,32 @@ abstract class Action
         $this->request = $this->request->withAttribute(ResponseDTO::class, new ResponseDTO('', [], $status, $headers));
         return $this->handler->handle($this->request);
     }
+
+    protected function getQueryParam($name) {
+        if ($params = $this->request->getQueryParams()) {
+            if (isset($params[$name])) {
+                if ($params[$name] != "") {
+                    return $params[$name];
+                } else {
+                    return null;
+                }
+            } else {
+                return null;
+            }
+        } else {
+            return null;
+        }
+    }
+    
+    protected function moveUploadedFile(string $directory, $uploadedFile): string
+    {
+        $fileName = $uploadedFile->getClientFilename();
+        $uploadedFile->moveTo($directory . DIRECTORY_SEPARATOR . $fileName);
+        return $fileName;
+    }
+
+    protected function getUploadedFile(string $name) {
+        $uploadedFiles = $this->request->getUploadedFiles();
+        return $uploadedFiles[$name];
+    }
 }

@@ -27,7 +27,6 @@ class RouteMiddleware implements MiddlewareInterface
     {
         $httpMethod = $request->getMethod();
         $uri = $request->getUri()->getPath();
-
         /** @var Route $route */
         if ($route = $this->router->dispatch($httpMethod, $uri))
         {

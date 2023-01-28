@@ -3,10 +3,10 @@
 return [
     'driver' => 'mysql',
     'host' => 'localhost',
-    'database' => 'test_db',
-    'username' => 'root',
-    'password' => 'root',
+    'database' => 'u1783479_default',
+    'username' => 'u1783479_default',
+    'password' => 'o3I0bZxx1CgfpS2a',
     'charset' => 'utf8',
-    'collation' => 'utf8_unicode_ci',
+    'collation' => 'utf8_general_ci',
     'prefix' => '',
 ];

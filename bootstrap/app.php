@@ -55,7 +55,7 @@ $runner->run($request);
 /**
  * Reset session flash message
  */
-Session::resetFlashMessage();
+Session::resetFlash();
 
 
 
