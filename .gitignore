@@ -1,5 +1,6 @@
+/config/database.php
 /.idea
 /vendor
 /.env
 /node_modules
-/config/database.php
+
