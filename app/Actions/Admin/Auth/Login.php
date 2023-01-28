@@ -3,7 +3,6 @@
 namespace App\Actions\Admin\Auth;
 
 use App\Actions\Action;
-
 use App\Support\Session\Session;
 use Psr\Http\Message\ResponseInterface;
 
@@ -12,7 +11,7 @@ class Login extends Action
     public function __invoke(): ResponseInterface
     {
         if($this->request->getMethod() == 'POST') {
-            if( ($_POST['uname'] == 'e!87_33') && ($_POST['psw'] == 'el!10_9!') ) {
+            if( ($_POST['uname'] == config('admin.login')) && ($_POST['psw'] == config('admin.password')) ) {
                 Session::put('auth', 'admin');
                 return $this->redirect('/admin/home');
             }
