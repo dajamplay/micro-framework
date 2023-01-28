@@ -1,5 +1,6 @@
 /config/database.php
 /config/admin.php
+/storage/cache
 /.idea
 /vendor
 /.env
