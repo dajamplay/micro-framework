@@ -3,6 +3,7 @@
 namespace App\Models\Category;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class Category extends Model
 {
@@ -15,5 +16,7 @@ class Category extends Model
         return $this->hasOne(Category::class, 'id','parent_id');
     }
 
-
+    public static function getRootCategories() : Collection | null {
+        return self::all()->where('parent_id', '=', 0) ?? null;
+    }
 }

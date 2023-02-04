@@ -12,9 +12,8 @@ class CreateCategory extends Action
 {
     public function __invoke(FileUploader $fileUploader): ResponseInterface
     {
-        $rootCategories = Category::all()->where('parent_id','=', null);
-
         if ($this->request->getMethod() == 'POST') {
+
             $params = $this->request->getParsedBody();
 
             $category = Category::create([
@@ -29,6 +28,8 @@ class CreateCategory extends Action
             }
         }
 
-        return $this->render('admin.category.create', [ 'rootCategories' => $rootCategories]);
+        return $this->render('admin.category.create', [
+            'rootCategories' => Category::getRootCategories()
+        ]);
     }
 }

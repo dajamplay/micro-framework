@@ -56,9 +56,7 @@
 
     <div class="row">
         <div class="col-12">
-            @if (\App\Support\Session\Session::hasFlash('flash_message'))
-                <div class="alert alert-success">{{ \App\Support\Session\Session::getFlash('flash_message') }}</div>
-            @endif
+            @include('partials.alert')
         </div>
     </div>
 

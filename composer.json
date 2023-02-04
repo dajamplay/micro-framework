@@ -15,13 +15,14 @@
         "php": "^8.0",
         "ext-pdo": "*",
         "httpsoft/http-runner": "^1.0",
+        "illuminate/database": "v8.83.12",
+        "illuminate/events": "v8.83.12",
+        "jenssegers/blade": "v1.4.0",
         "laminas/laminas-diactoros": "^2.10",
         "nikic/fast-route": "^1.3",
         "php-di/php-di": "6.4.0",
-        "roave/security-advisories": "dev-master",
-        "jenssegers/blade" : "v1.4.0",
-        "illuminate/database": "v8.83.12",
-        "illuminate/events": "v8.83.12"
+        "phpoffice/phpspreadsheet": "^1.27",
+        "roave/security-advisories": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5"

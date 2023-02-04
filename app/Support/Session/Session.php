@@ -11,9 +11,10 @@ class Session
         $_SESSION[$name] = $value;
     }
 
-    public static function putFlash(string $name, string $value): void
+    public static function putFlash(string $name, string $value, string $color = "alert-success"): void
     {
-        $_SESSION[self::SESSION_FLASH][$name] = $value;
+        $_SESSION[self::SESSION_FLASH][$name]["name"] = $value;
+        $_SESSION[self::SESSION_FLASH][$name]["color"] = $color;
     }
 
     public static function has(string $name): bool
@@ -41,7 +42,7 @@ class Session
         return $_SESSION[$name] ?: null;
     }
 
-    public static function getFlash(string $name): string|null
+    public static function getFlash(string $name)
     {
         return $_SESSION[self::SESSION_FLASH][$name] ?: null;
     }
