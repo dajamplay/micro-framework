@@ -11,9 +11,12 @@ use Psr\Http\Message\ResponseInterface;
 
 class UpdateCategory extends Action
 {
-    public function __invoke($id, FileUploader $fileUploader): ResponseInterface
+    public function __invoke($id, FileUploader $uploader): ResponseInterface
     {
         if ($this->request->getMethod() == 'POST') {
+
+            $file = $this->request->getUploadedFiles()['image'] ?? null;
+
             $params = $this->request->getParsedBody();
 
             $category = Category::find($params['id']);
@@ -21,7 +24,7 @@ class UpdateCategory extends Action
             $category->name = $params['name'];
             $category->parent_id = $params['parent_id'];
             $category->description = $params['description'];
-            $category->image = $fileUploader->upload($this->request->getUploadedFiles(), 'image') ?? $category->image;
+            $category->image = $uploader->uploadSingleImage($file) ?? $category->image;
 
             if ($category->save()) {
                 Session::putFlash('flash_message', 'Категория обновлена');

@@ -2,9 +2,12 @@
 
 namespace App\Services\FileUploader;
 
+use Laminas\Diactoros\UploadedFile;
+
 class FileUploader
 {
     private array $errors;
+
     private array $files;
 
     private array $rules = [
@@ -17,18 +20,50 @@ class FileUploader
     public function uploadImages(array $files, string $path = null, string $inputName = "files") : void {
 
         $this->errors = [];
+
         $files = $files[$inputName];
+
         $directory = $path ?? config('path.uploads');
 
         foreach ($files as $file) {
+
             $fileName = $file->getClientFilename();
+
             if ($file->getError() == UPLOAD_ERR_OK && $this->imageValidate($file))  {
+
                 $file->moveTo($directory . DIRECTORY_SEPARATOR . $fileName);
+
                 $this->addFile($fileName);
+
             } else {
+
                 $this->errors[$fileName][] = "Ошибка загрузки";
+
             }
         }
+    }
+
+    public function uploadSingleImage(UploadedFile | null $file, string $path = null) : string | false
+    {
+        $this->errors = [];
+
+        if ($file && $file->getError() == UPLOAD_ERR_OK && $this->imageValidate($file))  {
+
+            $directory = $path ?? config('path.uploads');
+
+            $fileName = $file->getClientFilename();
+
+            $file->moveTo($directory . DIRECTORY_SEPARATOR . $fileName);
+
+            return $fileName;
+
+        } else {
+
+            $this->errors[$file->getClientFilename()][] = "Ошибка загрузки";
+
+        }
+
+        return false;
     }
 
     public function hasErrors() : bool {

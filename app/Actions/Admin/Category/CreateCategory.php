@@ -10,9 +10,11 @@ use Psr\Http\Message\ResponseInterface;
 
 class CreateCategory extends Action
 {
-    public function __invoke(FileUploader $fileUploader): ResponseInterface
+    public function __invoke(FileUploader $uploader): ResponseInterface
     {
         if ($this->request->getMethod() == 'POST') {
+
+            $file = $this->request->getUploadedFiles()['image'] ?? null;
 
             $params = $this->request->getParsedBody();
 
@@ -20,7 +22,7 @@ class CreateCategory extends Action
                 'name' => $params['name'],
                 'parent_id' => $params['parent_id'],
                 'description' => $params['description'],
-                'image' => $fileUploader->uploadImages($this->request->getUploadedFiles(), config('path.uploads'), 'images')
+                'image' => $uploader->uploadSingleImage($file)
             ]);
 
             if ($category->save()) {
