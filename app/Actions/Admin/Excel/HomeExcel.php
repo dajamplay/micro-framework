@@ -4,27 +4,28 @@ namespace App\Actions\Admin\Excel;
 
 use App\Actions\Action;
 use App\Models\Category\Category;
-use App\Services\Excel\Excel;
-use App\Services\SimpleValidator\SimpleValidator;
 use App\Support\Session\Session;
 
 use Psr\Http\Message\ResponseInterface;
 
 class HomeExcel extends Action
 {
-    public function __invoke(Excel $excel, SimpleValidator $validator): ResponseInterface
+    public function __invoke(ExcelUploader $uploader): ResponseInterface
     {
         if ($this->request->getMethod() == 'POST') {
 
-            $excelFormat = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-
             $excelFile = $this->request->getUploadedFiles()['excel_file'] ?? null;
 
-            if ($excelFile && $excelFile->getClientMediaType() == $excelFormat && $excelFile->getError() == UPLOAD_ERR_OK) {
-                echo '<pre>';
-                print_r($excel->xlsxToArray($excelFile)); die;
+            $rootCategoryId = $this->request->getParsedBody()['category_id'] ?? null;
+
+            if ($uploader->upload($excelFile, $rootCategoryId)) {
+
+                Session::putFlash('flash_message', 'Файл загружен!');
+
             } else {
-                Session::putFlash('flash_message', 'Невереый файл!', "alert-danger");
+
+                Session::putFlash('flash_message', 'Ошибка', "alert-danger");
+
             }
         }
 

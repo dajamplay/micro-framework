@@ -20,7 +20,7 @@ class CreateCategory extends Action
                 'name' => $params['name'],
                 'parent_id' => $params['parent_id'],
                 'description' => $params['description'],
-                'image' => $fileUploader->upload($this->request->getUploadedFiles(), 'image')
+                'image' => $fileUploader->uploadImages($this->request->getUploadedFiles(), config('path.uploads'), 'images')
             ]);
 
             if ($category->save()) {
