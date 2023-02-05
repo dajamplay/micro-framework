@@ -10,32 +10,34 @@ use Psr\Http\Message\ResponseInterface;
 
 class HomeGallery extends Action
 {
-    public function __invoke(FileUploader $fileUploader): ResponseInterface
+    public function __invoke(FileUploader $uploader): ResponseInterface
     {
-        if ($this->request->getMethod() == 'POST') {
+        if ($this->request->getMethod() == 'POST' && $this->request->getUploadedFiles()['images'][0]->getError() == UPLOAD_ERR_OK) {
 
-            $imageName = $fileUploader->upload($this->request->getUploadedFiles(), 'image', config('path.gallery'));
+            $uploader->uploadImages(
+                $this->request->getUploadedFiles(),
+                config('path.gallery'),
+                'images');
 
-            if ($imageName) {
+            if ($uploader->hasErrors()) {
 
-                $image = Gallery::create([
-                    'name' => $imageName,
-                ]);
+                Gallery::saveAll($uploader->getFiles());
 
-                if ($image->save()) {
-                    Session::putFlash('flash_message', 'Изображение "' . $imageName . '" загружено.');
-                } else {
-                    Session::putFlash('flash_message', 'ОШИБКА');
-                }
+                Session::putFlash('flash_message', 'Изображения загружены.');
+
+            } else {
+
+                Session::putFlash('flash_message', $uploader->getErrorsHTML(), "alert-danger");
+
             }
-
         }
 
         $images = Gallery::all()->reverse();
 
         return $this->render('admin.gallery.home', [
             'images' => $images,
-            'url' => config('site.gallery_url')
+            'url' => config('site.home_url') . "/gallery/"
         ]);
     }
+
 }

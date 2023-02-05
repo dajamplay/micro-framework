@@ -47,16 +47,5 @@ abstract class Action
             return null;
         }
     }
-    
-//    protected function moveUploadedFile(string $directory, $uploadedFile): string
-//    {
-//        $fileName = $uploadedFile->getClientFilename();
-//        $uploadedFile->moveTo($directory . DIRECTORY_SEPARATOR . $fileName);
-//        return $fileName;
-//    }
-//
-//    protected function getUploadedFile(string $name) {
-//        $uploadedFiles = $this->request->getUploadedFiles();
-//        return $uploadedFiles[$name];
-//    }
+
 }

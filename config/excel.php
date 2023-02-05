@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'length' => 5000
+    'length' => 10000
 ];

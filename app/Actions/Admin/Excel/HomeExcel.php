@@ -5,12 +5,14 @@ namespace App\Actions\Admin\Excel;
 use App\Actions\Action;
 use App\Models\Category\Category;
 use App\Services\Excel\Excel;
+use App\Services\SimpleValidator\SimpleValidator;
 use App\Support\Session\Session;
+
 use Psr\Http\Message\ResponseInterface;
 
 class HomeExcel extends Action
 {
-    public function __invoke(Excel $excel): ResponseInterface
+    public function __invoke(Excel $excel, SimpleValidator $validator): ResponseInterface
     {
         if ($this->request->getMethod() == 'POST') {
 
