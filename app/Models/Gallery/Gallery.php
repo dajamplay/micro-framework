@@ -9,9 +9,9 @@ class Gallery extends Model
     protected $table = 'gallery';
     protected $fillable = ['id', 'url', 'name'];
 
-    public static function saveArray(array $images) : void {
+    public static function saveArray(array | null $images) : void {
 
-        if (!empty($images)) {
+        if ($images) {
             foreach ($images as $imageName) {
 
                 $imageToDb = Gallery::create([

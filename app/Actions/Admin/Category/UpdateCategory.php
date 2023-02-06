@@ -17,6 +17,8 @@ class UpdateCategory extends Action
 
             $file = $this->request->getUploadedFiles()['image'] ?? null;
 
+            $uploader->uploadFile($file, config('path.uploads'), 'image');
+
             $params = $this->request->getParsedBody();
 
             $category = Category::find($params['id']);
@@ -24,7 +26,7 @@ class UpdateCategory extends Action
             $category->name = $params['name'];
             $category->parent_id = $params['parent_id'];
             $category->description = $params['description'];
-            $category->image = $uploader->uploadFile($file, config('path.uploads'), 'image') ?? $category->image;
+            $category->image = $uploader->getFile() ?? $category->image;
 
             if ($category->save()) {
                 Session::putFlash('flash_message', 'Категория обновлена');

@@ -83,8 +83,8 @@ class FileUploader
         return $this->arrayErrorsToHTML($this->errors);
     }
 
-    public function getFiles() : array {
-        return $this->files;
+    public function getFiles() : array | null {
+        return empty($this->files) ? null : $this->files;
     }
 
     public function getFile() : string | null {
