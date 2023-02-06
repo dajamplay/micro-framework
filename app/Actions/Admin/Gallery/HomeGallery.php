@@ -20,7 +20,7 @@ class HomeGallery extends Action
 
             if (!$uploader->hasErrors()) {
 
-                Gallery::saveArray($uploader->getFiles());
+                Gallery::saveArray($uploader->getFileNameArray());
 
                 Session::putFlash('flash_message', 'Изображения загружены.');
 

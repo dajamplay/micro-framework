@@ -34,6 +34,8 @@ class FileUploader
 
                 if ($file->getError() == UPLOAD_ERR_OK && $this->validate($file, $type))  {
 
+                    $this->createDirectoryIfNotExists($directory);
+
                     $file->moveTo($directory . DIRECTORY_SEPARATOR . $fileName);
 
                     $this->addFile($fileName);
@@ -59,6 +61,8 @@ class FileUploader
 
             if ($file->getError() == UPLOAD_ERR_OK && $this->validate($file, $type))  {
 
+                $this->createDirectoryIfNotExists($directory);
+
                 $file->moveTo($directory . DIRECTORY_SEPARATOR . $fileName);
 
                 $this->addFile($fileName);
@@ -83,7 +87,7 @@ class FileUploader
         return $this->arrayErrorsToHTML($this->errors);
     }
 
-    public function getFiles() : array | null {
+    public function getFileNameArray() : array | null {
         return empty($this->files) ? null : $this->files;
     }
 
@@ -126,5 +130,11 @@ class FileUploader
             return $message;
         }
         return "Ошибка.";
+    }
+
+    private function createDirectoryIfNotExists(string $directory) {
+        if (!file_exists($directory)) {
+            mkdir($directory, 0777, true);
+        }
     }
 }

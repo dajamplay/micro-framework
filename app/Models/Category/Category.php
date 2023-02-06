@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 class Category extends Model
 {
     protected $table = 'category';
+
     protected $fillable = ['id', 'name', 'parent_id', 'description', 'image'];
 
     public function parent()
