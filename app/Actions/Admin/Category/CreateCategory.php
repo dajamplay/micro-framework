@@ -20,15 +20,23 @@ class CreateCategory extends Action
 
             $uploader->uploadFile($file, config('path.uploads'), 'image');
 
-            $category = Category::create([
-                'name' => $params['name'],
-                'parent_id' => $params['parent_id'],
-                'description' => $params['description'],
-                'image' => $uploader->getFile()
-            ]);
+            if (!$uploader->hasErrors()) {
 
-            if ($category->save()) {
+                $category = Category::create([
+                    'name' => $params['name'],
+                    'parent_id' => $params['parent_id'],
+                    'description' => $params['description'],
+                    'image' => $uploader->getFileName()
+                ]);
+
+                $category->save();
+
                 Session::putFlash('flash_message', 'Категория создана');
+
+            } else {
+
+                Session::putFlash('flash_message', $uploader->getErrorsHTML(), 'alert-danger');
+
             }
         }
 

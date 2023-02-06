@@ -87,7 +87,7 @@ class FileUploader
         return empty($this->files) ? null : $this->files;
     }
 
-    public function getFile() : string | null {
+    public function getFileName() : string | null {
         return $this->files[0] ?? null;
     }
 
