@@ -24,7 +24,7 @@ class UpdateCategory extends Action
             $category->name = $params['name'];
             $category->parent_id = $params['parent_id'];
             $category->description = $params['description'];
-            $category->image = $uploader->uploadSingleImage($file) ?? $category->image;
+            $category->image = $uploader->uploadFile($file, config('path.uploads'), 'image') ?? $category->image;
 
             if ($category->save()) {
                 Session::putFlash('flash_message', 'Категория обновлена');

@@ -14,15 +14,17 @@ class CreateCategory extends Action
     {
         if ($this->request->getMethod() == 'POST') {
 
+            $params = $this->request->getParsedBody();
+
             $file = $this->request->getUploadedFiles()['image'] ?? null;
 
-            $params = $this->request->getParsedBody();
+            $uploader->uploadFile($file, config('path.uploads'), 'image');
 
             $category = Category::create([
                 'name' => $params['name'],
                 'parent_id' => $params['parent_id'],
                 'description' => $params['description'],
-                'image' => $uploader->uploadSingleImage($file)
+                'image' => $uploader->getFile()
             ]);
 
             if ($category->save()) {

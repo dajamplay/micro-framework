@@ -17,19 +17,47 @@ class FileUploader
         ]
     ];
 
-    public function uploadImages(array $files, string $path = null, string $inputName = "files") : void {
+    /**
+     * @param $files UploadedFile[]
+     */
+    public function uploadFiles(array | null $files, string $directory, string $type = 'image') : void {
 
         $this->errors = [];
 
-        $files = $files[$inputName];
+        $this->files = [];
 
-        $directory = $path ?? config('path.uploads');
+        if ($files) {
 
-        foreach ($files as $file) {
+            foreach ($files as $file) {
+
+                $fileName = $file->getClientFilename();
+
+                if ($file->getError() == UPLOAD_ERR_OK && $this->validate($file, $type))  {
+
+                    $file->moveTo($directory . DIRECTORY_SEPARATOR . $fileName);
+
+                    $this->addFile($fileName);
+
+                } else {
+
+                    $this->errors[$fileName][] = "Ошибка загрузки";
+
+                }
+            }
+        }
+    }
+
+    public function uploadFile(UploadedFile | null $file, string $directory,  string $type = 'image') : void
+    {
+        $this->errors = [];
+
+        $this->files = [];
+
+        if ($file) {
 
             $fileName = $file->getClientFilename();
 
-            if ($file->getError() == UPLOAD_ERR_OK && $this->imageValidate($file))  {
+            if ($file->getError() == UPLOAD_ERR_OK && $this->validate($file, $type))  {
 
                 $file->moveTo($directory . DIRECTORY_SEPARATOR . $fileName);
 
@@ -43,31 +71,8 @@ class FileUploader
         }
     }
 
-    public function uploadSingleImage(UploadedFile | null $file, string $path = null) : string | false
-    {
-        $this->errors = [];
-
-        if ($file && $file->getError() == UPLOAD_ERR_OK && $this->imageValidate($file))  {
-
-            $directory = $path ?? config('path.uploads');
-
-            $fileName = $file->getClientFilename();
-
-            $file->moveTo($directory . DIRECTORY_SEPARATOR . $fileName);
-
-            return $fileName;
-
-        } else {
-
-            $this->errors[$file->getClientFilename()][] = "Ошибка загрузки";
-
-        }
-
-        return false;
-    }
-
     public function hasErrors() : bool {
-        return count($this->getErrors()) == 0;
+        return count($this->getErrors()) != 0;
     }
 
     public function getErrors() : array {
@@ -82,21 +87,26 @@ class FileUploader
         return $this->files;
     }
 
+    public function getFile() : string | null {
+        return $this->files[0] ?? null;
+    }
+
     private function addFile($fileName) : void {
         $this->files[] = $fileName;
     }
 
-    private function imageValidate($file) : bool {
+    private function validate(UploadedFile $file, string $type) : bool {
 
         $fileName = $file->getClientFilename();
-        if ($file->getSize() > (int)($this->rules['image']['size']) * 1024 * 1024) {
-            $this->errors[$fileName][] = "Размер файла больше " . $this->rules['image']['size'] . " мегабайт.";
+
+        if ($file->getSize() > (int)($this->rules[$type]['size']) * 1024 * 1024) {
+            $this->errors[$fileName][] = "Размер файла больше " . $this->rules[$type]['size'] . " мегабайт.";
             return false;
         }
-        if ( in_array($file->getClientMediaType(), $this->rules['image']['types'])  != 1) {
+
+        if ( in_array($file->getClientMediaType(), $this->rules[$type]['types'])  != 1) {
             $this->errors[$fileName][] = "Неверный формат изображения. " . $file->getClientMediaType();
             return false;
-
         }
 
         return true;

@@ -12,16 +12,15 @@ class HomeGallery extends Action
 {
     public function __invoke(FileUploader $uploader): ResponseInterface
     {
-        if ($this->request->getMethod() == 'POST' && $this->request->getUploadedFiles()['images'][0]->getError() == UPLOAD_ERR_OK) {
+        if ( $this->request->getMethod() == 'POST' ) {
 
-            $uploader->uploadImages(
-                $this->request->getUploadedFiles(),
-                config('path.gallery'),
-                'images');
+            $files =  $this->request->getUploadedFiles()['images'] ?? null;
 
-            if ($uploader->hasErrors()) {
+            $uploader->uploadFiles($files, config('path.gallery'), 'image');
 
-                Gallery::saveAll($uploader->getFiles());
+            if (!$uploader->hasErrors()) {
+
+                Gallery::saveArray($uploader->getFiles());
 
                 Session::putFlash('flash_message', 'Изображения загружены.');
 

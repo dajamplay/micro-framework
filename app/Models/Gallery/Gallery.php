@@ -9,7 +9,7 @@ class Gallery extends Model
     protected $table = 'gallery';
     protected $fillable = ['id', 'url', 'name'];
 
-    public static function saveAll(array $images) : void {
+    public static function saveArray(array $images) : void {
 
         if (!empty($images)) {
             foreach ($images as $imageName) {
