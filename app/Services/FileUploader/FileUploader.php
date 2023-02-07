@@ -17,61 +17,38 @@ class FileUploader
         ]
     ];
 
+    private FileValidator $validator;
+
+    public function __construct(FileValidator $validator)
+    {
+        $this->validator = $validator;
+    }
+
     /**
      * @param $files UploadedFile[]
      */
     public function uploadFiles(array | null $files, string $directory, string $type = 'image') : void {
 
-        $this->errors = [];
-
-        $this->files = [];
+        $this->clearData();
 
         if ($files) {
 
             foreach ($files as $file) {
 
-                $fileName = $file->getClientFilename();
-
-                if ($file->getError() == UPLOAD_ERR_OK && $this->validate($file, $type))  {
-
-                    $this->createDirectoryIfNotExists($directory);
-
-                    $file->moveTo($directory . DIRECTORY_SEPARATOR . $fileName);
-
-                    $this->addFile($fileName);
-
-                } else {
-
-                    $this->errors[$fileName][] = "Ошибка загрузки";
-
-                }
+                $this->upload($file, $directory, $type);
             }
         }
     }
 
     public function uploadFile(UploadedFile | null $file, string $directory,  string $type = 'image') : void
     {
-        $this->errors = [];
 
-        $this->files = [];
+        $this->clearData();
 
         if ($file) {
 
-            $fileName = $file->getClientFilename();
+            $this->upload($file, $directory, $type);
 
-            if ($file->getError() == UPLOAD_ERR_OK && $this->validate($file, $type))  {
-
-                $this->createDirectoryIfNotExists($directory);
-
-                $file->moveTo($directory . DIRECTORY_SEPARATOR . $fileName);
-
-                $this->addFile($fileName);
-
-            } else {
-
-                $this->errors[$fileName][] = "Ошибка загрузки";
-
-            }
         }
     }
 
@@ -95,7 +72,34 @@ class FileUploader
         return $this->files[0] ?? null;
     }
 
-    private function addFile($fileName) : void {
+    private function upload(UploadedFile | null $file, string $directory, string $type) {
+
+        $fileName = $file->getClientFilename();
+
+        if ($file->getError() == UPLOAD_ERR_OK && $this->validate($file, $type))  {
+
+            $this->createDirectoryIfNotExists($directory);
+
+            $file->moveTo($directory . DIRECTORY_SEPARATOR . $fileName);
+
+            $this->addUploadedFile($fileName);
+
+        } else {
+
+            $this->errors[$fileName][] = "Ошибка загрузки";
+
+        }
+    }
+
+    private function clearData() {
+
+        $this->errors = [];
+
+        $this->files = [];
+
+    }
+
+    private function addUploadedFile($fileName) : void {
         $this->files[] = $fileName;
     }
 

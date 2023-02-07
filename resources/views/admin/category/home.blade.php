@@ -32,8 +32,8 @@
                 <td>{!! htmlspecialchars_decode($category->description) !!}</td>
                 <td>
 {{--                    <a href="/admin/category/show/{{ $category->id }}">Подробнее</a>--}}
-                    <a href="/admin/category/update/{{ $category->id }}">Редактировать</a>
-                    <a href="/admin/category/delete/{{ $category->id }}" onClick="return window.confirm('Удалить категорию {{ $category->name }}?');">Удалить</a>
+                    <a href="/admin/category/update/{{ $category->id }}"><span class="link-success">Редактировать</span></a>
+                    <a href="/admin/category/delete/{{ $category->id }}" onClick="return window.confirm('Удалить категорию {{ $category->name }}?');"><span class="link-danger">Удалить</span></a>
                 </td>
             </tr>
         @endforeach
