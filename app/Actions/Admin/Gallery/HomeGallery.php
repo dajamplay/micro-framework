@@ -18,19 +18,11 @@ class HomeGallery extends Action
 
             $uploader->uploadFiles($files, config('path.gallery'), 'image');
 
+            Gallery::saveArray($uploader->getFileNameArray());
+
             if (!$uploader->hasErrors()) {
 
-                Gallery::saveArray($uploader->getFileNameArray());
-
-                if ($uploader->hasUploadedImage()) {
-
-                    Session::putFlash('flash_message', 'Изображения загружены.');
-
-                } else {
-
-                    Session::putFlash('flash_message', 'Ихзображения не выбраны!', "alert-danger");
-
-                }
+                Session::putFlash('flash_message', 'Изображения загружены.');
 
             } else {
 
