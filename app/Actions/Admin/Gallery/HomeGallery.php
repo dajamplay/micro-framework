@@ -22,7 +22,15 @@ class HomeGallery extends Action
 
                 Gallery::saveArray($uploader->getFileNameArray());
 
-                Session::putFlash('flash_message', 'Изображения загружены.');
+                if ($uploader->hasUploadedImage()) {
+
+                    Session::putFlash('flash_message', 'Изображения загружены.');
+
+                } else {
+
+                    Session::putFlash('flash_message', 'Ихзображения не выбраны!', "alert-danger");
+
+                }
 
             } else {
 

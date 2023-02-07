@@ -21,8 +21,6 @@
                 <div class="card">
                     <img class="card-img-top" src="{{$image->url}}" alt="{{$image->name}}">
                     <div class="card-body d-flex flex-column">
-                        <h5 class="card-title">{{$image->name}}</h5>
-                        <p class="card-text small">{{$image->url}}</p>
                         <a class="btn btn-outline-success btn-block mt-auto btn-copy" data-copy="{{$image->url}}">Скопировать ссылку</a>
                     </div>
                 </div>

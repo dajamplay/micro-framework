@@ -31,12 +31,14 @@ class FileUploader
 
         $this->clearData();
 
-        if ($files) {
+        if ($files[0]->getError() == UPLOAD_ERR_OK) {
 
             foreach ($files as $file) {
 
                 $this->upload($file, $directory, $type);
+
             }
+
         }
     }
 
@@ -45,7 +47,7 @@ class FileUploader
 
         $this->clearData();
 
-        if ($file) {
+        if ($file->getError() == UPLOAD_ERR_OK) {
 
             $this->upload($file, $directory, $type);
 
@@ -70,6 +72,10 @@ class FileUploader
 
     public function getFileName() : string | null {
         return $this->files[0] ?? null;
+    }
+
+    public function hasUploadedImage() : bool {
+        return count($this->files) > 0;
     }
 
     private function upload(UploadedFile | null $file, string $directory, string $type) {

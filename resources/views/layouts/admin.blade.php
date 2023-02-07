@@ -32,18 +32,29 @@
                 <div class="admin__header__menuitem">
                     <a href="/admin/category/create" type="button" class="btn btn-success">Создать категорию</a>
                 </div>
-{{--                <div class="admin__header__menuitem">--}}
-{{--                    <a href="/admin/product/home" type="button" class="btn btn-success">Продукция</a>--}}
-{{--                </div>--}}
+
                 <div class="admin__header__menuitem">
                     <a href="/admin/excel/home" type="button" class="btn btn-success">Загрузить из Excel файла</a>
                 </div>
 {{--                <div class="admin__header__menuitem">--}}
 {{--                    <a href="/admin/product/create" type="button" class="btn btn-success">Создать продукт</a>--}}
 {{--                </div>--}}
-                <div class="admin__header__menuitem">
-                    <a href="/admin/gallery/home" type="button" class="btn btn-success">Галерея</a>
+
+                <div class="dropdown">
+                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Галерея
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="/admin/gallery/home">Добавить</a></li>
+                        <li><a class="dropdown-item" href="/admin/gallery/home">Просмотр</a></li>
+                    </ul>
                 </div>
+
+{{--                <div class="admin__header__menuitem">--}}
+{{--                    <a href="/admin/gallery/home" type="button" class="btn btn-success">Галерея</a>--}}
+{{--                </div>--}}
+
+
                 <div class="admin__header__menuitem">
                     <form method="POST" action="/admin/out">
                         <button type="submit" class="btn btn-warning">Выход</button>
@@ -67,6 +78,8 @@
     </div>
 
 </div>
+
+<script type="text/javascript" src="/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
 <script type="text/javascript" src="/assets/vendor/tinymce/tinymce.min.js"></script>
 <script type="module" src="/assets/js/admin/admin.js"></script>
 </body>
