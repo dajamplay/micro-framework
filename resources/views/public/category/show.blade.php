@@ -28,6 +28,11 @@
                     @foreach($categories as $cat)
                         <div class="main__h1_table">
                             <h2>{{$cat->name}}</h2>
+                            @if($cat->image)
+                                <div class="card__img">
+                                    <img src="{{$cat->image}}" alt="{{ $cat->name }}">
+                                </div>
+                            @endif
                             @if($cat->description)
                                 <p>{{$cat->description}}</p>
                             @endif

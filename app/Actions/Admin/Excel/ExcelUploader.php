@@ -15,14 +15,14 @@ class ExcelUploader
         2 => 'size',
         3 => 'price',
         4 => 'price_opt',
-        5 => 'image',
-        6 =>'description',
+        5 => 'description',
+        6 => 'image',
     ];
 
     protected array $categoryFields = [
         0 => 'name',
-        5 => 'image',
-        6 => 'description',
+        5 => 'description',
+        6 => 'image',
     ];
 
     protected string $excelFormat = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
@@ -46,6 +46,9 @@ class ExcelUploader
         if ($file && $file->getError() == UPLOAD_ERR_OK && $rootCategoryId && $file->getClientMediaType() == $this->excelFormat) {
 
             $this->prepareData($file, $rootCategoryId);
+
+//            echo "<pre>";
+//            print_r($this->excelArray); die;
 
             $this->deleteCategory($this->rootCategoryId);
 
