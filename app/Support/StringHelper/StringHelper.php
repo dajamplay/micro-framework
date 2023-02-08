@@ -4,7 +4,7 @@ namespace App\Support\StringHelper;
 
 class StringHelper
 {
-    public static function removeUnnecessary(string $string) : string {
+    public static function removeUnnecessaryChars(string $string) : string {
 
         $string = trim($string);
         $string = stripslashes($string);
