@@ -11,7 +11,7 @@ if ($env == "dev") {
         'display_errors' => 1,
         'display_startup_errors' => 1,
         'error_reporting' => E_ALL,
-        'home_url' => 'http://eleanta.loc',
+        'home_url' => 'http://e.loc',
     ];
 } else {
 

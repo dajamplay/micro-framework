@@ -17,12 +17,12 @@ class FileUploader
         ]
     ];
 
-    private FileValidator $validator;
-
-    public function __construct(FileValidator $validator)
-    {
-        $this->validator = $validator;
-    }
+//    private FileValidator $validator;
+//
+//    public function __construct(FileValidator $validator)
+//    {
+//        $this->validator = $validator;
+//    }
 
     /**
      * @param $files UploadedFile[]
@@ -64,6 +64,10 @@ class FileUploader
 
     public function getErrorsHTML() : string {
         return $this->arrayErrorsToHTML($this->errors);
+    }
+
+    public function getSuccessUploadedFilesHTML() : string {
+        return $this->arraySuccessUploadedFilesToHTML($this->files);
     }
 
     public function getFileNameArray() : array | null {
@@ -119,7 +123,7 @@ class FileUploader
         }
 
         if ( in_array($file->getClientMediaType(), $this->rules[$type]['types'])  != 1) {
-            $this->errors[$fileName][] = "Неверный формат изображения. " . $file->getClientMediaType();
+            $this->errors[$fileName][] = "Неверный формат изображения. ";
             return false;
         }
 
@@ -130,7 +134,7 @@ class FileUploader
         if (count($uploaderErrors) > 0) {
             $message = '<ul>';
             foreach ($uploaderErrors as $imageName => $errors) {
-                $message .= "<li><b>{$imageName}</b><ul>";
+                $message .= "<li>{$imageName}<ul>";
                 foreach ($errors as $error) {
                     $message .= "<li>{$error}</li>";
                 }
@@ -139,7 +143,19 @@ class FileUploader
             $message .= '</ul>';
             return $message;
         }
-        return "Ошибка.";
+        return "";
+    }
+
+    private function arraySuccessUploadedFilesToHTML(array $successUploadedFiles) : string {
+        if (count($successUploadedFiles) > 0) {
+            $message = '<ul>';
+            foreach ($successUploadedFiles as $file) {
+                $message .= "<li><b>{$file}</b> загружен.<ul>";
+            }
+            $message .= '</ul>';
+            return $message;
+        }
+        return "";
     }
 
     private function createDirectoryIfNotExists(string $directory) {

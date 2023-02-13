@@ -20,15 +20,10 @@ class HomeGallery extends Action
 
             Gallery::saveArray($uploader->getFileNameArray());
 
-            if (!$uploader->hasErrors()) {
+            Session::putFlash('flash_message_error', $uploader->getErrorsHTML(), "alert-danger");
 
-                Session::putFlash('flash_message', 'Изображения загружены.');
+            Session::putFlash('flash_message_success', $uploader->getSuccessUploadedFilesHTML(), "alert-success");
 
-            } else {
-
-                Session::putFlash('flash_message', $uploader->getErrorsHTML(), "alert-danger");
-
-            }
         }
 
         $images = Gallery::all()->reverse();

@@ -5,8 +5,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
     <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/common.css">
     <link rel="stylesheet" href="/assets/css/admin.css">
+
     <title>Панель администратора</title>
 </head>
 <body>
@@ -26,9 +29,11 @@
                 <div class="admin__header__menuitem">
                     <a href="/admin/home" type="button" class="btn btn-success">Главная</a>
                 </div>
+
                 <div class="admin__header__menuitem">
                     <a href="/admin/category/home" type="button" class="btn btn-success">Категории</a>
                 </div>
+
                 <div class="admin__header__menuitem">
                     <a href="/admin/category/create" type="button" class="btn btn-success">Создать категорию</a>
                 </div>
@@ -36,9 +41,6 @@
                 <div class="admin__header__menuitem">
                     <a href="/admin/excel/home" type="button" class="btn btn-success">Загрузить из Excel файла</a>
                 </div>
-{{--                <div class="admin__header__menuitem">--}}
-{{--                    <a href="/admin/product/create" type="button" class="btn btn-success">Создать продукт</a>--}}
-{{--                </div>--}}
 
                 <div class="dropdown">
                     <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -49,11 +51,6 @@
                         <li><a class="dropdown-item" href="/admin/gallery/home">Просмотр</a></li>
                     </ul>
                 </div>
-
-{{--                <div class="admin__header__menuitem">--}}
-{{--                    <a href="/admin/gallery/home" type="button" class="btn btn-success">Галерея</a>--}}
-{{--                </div>--}}
-
 
                 <div class="admin__header__menuitem">
                     <form method="POST" action="/admin/out">
@@ -82,5 +79,6 @@
 <script type="text/javascript" src="/assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
 <script type="text/javascript" src="/assets/vendor/tinymce/tinymce.min.js"></script>
 <script type="module" src="/assets/js/admin/admin.js"></script>
+<script type="module" src="/assets/js/common/common.js"></script>
 </body>
 </html>

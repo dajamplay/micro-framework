@@ -5,4 +5,3 @@ initTinymce();
 
 addListenersForButtonsGallery(document.querySelectorAll('.btn-copy'));
 
-
