@@ -14,7 +14,7 @@
         </div>
     </form>
     <hr>
-    <h3>Последние изображения</h3>
+    <h3>Галерея</h3>
     <div class="row">
         @foreach ($images as $image)
             <div class="col-3 pb-3 d-flex align-items-stretch">

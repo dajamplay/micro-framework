@@ -4,6 +4,7 @@ namespace App\Actions\Admin\Gallery;
 
 use App\Actions\Action;
 use App\Models\Gallery\Gallery;
+use App\Models\Product\Product;
 use App\Services\FileUploader\FileUploader;
 use App\Support\Session\Session;
 use Psr\Http\Message\ResponseInterface;
@@ -28,7 +29,10 @@ class HomeGallery extends Action
 
         $images = Gallery::all()->reverse();
 
+        $productsWithImage = Product::where("image", "<>", null)->get();
+
         return $this->render('admin.gallery.home', [
+            '$productsWithImage' => $productsWithImage,
             'images' => $images,
             'url' => config('site.home_url') . "/gallery/"
         ]);
