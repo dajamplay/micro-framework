@@ -11,6 +11,11 @@ class Session
         $_SESSION[$name] = $value;
     }
 
+    public static function get(string $name): string | null
+    {
+        return $_SESSION[$name] ?: null;
+    }
+
     public static function putFlash(string $name, string $value, string $color = "alert-success"): void
     {
         $_SESSION[self::SESSION_FLASH][$name]["message"] = $value;
@@ -23,10 +28,8 @@ class Session
     }
 
     public static function hasFlash(): bool
-    //public static function hasFlash(string $name): bool
     {
         return isset($_SESSION[self::SESSION_FLASH]);
-        //return isset($_SESSION[self::SESSION_FLASH][$name]);
     }
 
     public static function delete(string $name): void
@@ -37,11 +40,6 @@ class Session
     public static function resetFlash(): void
     {
         if (isset($_SESSION[self::SESSION_FLASH])) unset($_SESSION[self::SESSION_FLASH]);
-    }
-
-    public static function get(string $name): string | null
-    {
-        return $_SESSION[$name] ?: null;
     }
 
     public static function getFlash() : array
@@ -55,5 +53,9 @@ class Session
         {
             session_start();
         }
+    }
+
+    public static function resetSession() : void {
+        $_SESSION = null;
     }
 }

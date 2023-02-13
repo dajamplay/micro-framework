@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eb4fa077db715b9af8d164faefb89c4f",
+    "content-hash": "04dd7258a355557bd324bf8745ee361e",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -2172,12 +2172,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "4c896e1a101ea77ed10cd3d4364f941ef87532b7"
+                "reference": "c0e29643df152bd7fbe3de189f6c2c16c7d4c2a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/4c896e1a101ea77ed10cd3d4364f941ef87532b7",
-                "reference": "4c896e1a101ea77ed10cd3d4364f941ef87532b7",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/c0e29643df152bd7fbe3de189f6c2c16c7d4c2a2",
+                "reference": "c0e29643df152bd7fbe3de189f6c2c16c7d4c2a2",
                 "shasum": ""
             },
             "conflict": {
@@ -2235,6 +2235,7 @@
                 "catfan/medoo": "<1.7.5",
                 "centreon/centreon": "<22.10-beta.1",
                 "cesnet/simplesamlphp-module-proxystatistics": "<3.1",
+                "cockpit-hq/cockpit": "<2.3.8",
                 "codeception/codeception": "<3.1.3|>=4,<4.1.22",
                 "codeigniter/framework": "<=3.0.6",
                 "codeigniter4/framework": "<4.2.11",
@@ -2739,7 +2740,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-02-08T22:04:26+00:00"
+            "time": "2023-02-09T20:04:23+00:00"
         },
         {
             "name": "symfony/console",
