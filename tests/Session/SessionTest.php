@@ -7,7 +7,7 @@ class SessionTest extends TestCase
 {
     protected function setUp(): void
     {
-
+        // init
     }
 
     public function testPutAndGet() {
@@ -61,6 +61,7 @@ class SessionTest extends TestCase
 
     protected function tearDown(): void
     {
+        //down
         Session::resetSession();
     }
 }
