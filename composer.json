@@ -25,9 +25,7 @@
         "roave/security-advisories": "dev-master",
         "vlucas/valitron": "^1.4"
     },
-    "require-dev": {
-        "phpunit/phpunit": "^10.0.7"
-    },
+    "require-dev": {},
     "scripts": {
         "server": "php -S localhost:8080 -t public",
         "test": "phpunit --colors=always"
