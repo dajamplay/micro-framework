@@ -48,7 +48,7 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         <li><a class="dropdown-item" href="/admin/gallery/home">Добавить</a></li>
-                        <li><a class="dropdown-item" href="/admin/gallery/home">Просмотр</a></li>
+{{--                        <li><a class="dropdown-item" href="/admin/gallery/home">Просмотр</a></li>--}}
                     </ul>
                 </div>
 
